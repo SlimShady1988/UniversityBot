@@ -15,13 +15,13 @@ public class ParseQuestionService implements ParseQuestionInterface {
 
     public Integer checkQuestion(String question) {
         int questionTypeNumber = 0;
-        if (question.matches("^(Who is head of department)\\s\\w+.?$")) {
+        if (question.matches("(^Who is head of department)\\s\\w+.?$")) {
             questionTypeNumber =  1;
         }
         if (question.matches("^(Show)\\s\\S+\\s(statistics).?$")) {
             questionTypeNumber = 2;
         }
-        if (question.matches("^(Show the average salary for the department )\\S+.?$")) {
+        if (question.matches("^(Show the average salary for the department)\\s\\S+.?$")) {
             questionTypeNumber = 3;
 
         }

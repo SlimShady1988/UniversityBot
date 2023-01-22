@@ -112,15 +112,15 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
             }
         }
         if (assistants != 0 || associateProfessors != 0 || professors != 0) {
-            return " assistants - " + assistants + ". associate professors - "
-                    + associateProfessors + ". professors - " + professors +".";
+            return "assistants - " + assistants + ". \n" +"associate professors - "
+                    + associateProfessors + ". \n" +"professors - " + professors +".";
         } else {
             return "Nobody works in this department";
         }
     }
 
     public String getAverageSalaryByDepartment(String departmentName) throws SQLException {
-        Integer averageSalary = null;
+        int averageSalary = 0;
         try (Connection connection = dataSource.getConnection()) {
             try (
                     PreparedStatement averageSalaryStatement = connection.prepareStatement(
@@ -141,7 +141,7 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
             }
         }
 
-        if (averageSalary != null) {
+        if (averageSalary != 0) {
             return "The average salary of " + departmentName + " is " + averageSalary;
         } else {
             return "Wrong department name";
