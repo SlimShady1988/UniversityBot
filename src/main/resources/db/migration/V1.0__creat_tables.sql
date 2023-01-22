@@ -12,7 +12,6 @@ CREATE TABLE degree
     name             degree_type NOT NULL
 );
 
-
 CREATE TABLE lectors
 (
     id                      BIGSERIAL PRIMARY KEY NOT NULL,

@@ -15,20 +15,20 @@ public class ParseQuestionService implements ParseQuestionInterface {
 
     public Integer checkQuestion(String question) {
         int questionTypeNumber = 0;
-        if (question.matches("(^Who is head of department)\\s\\w+.?$")) {
+
+        if (question.matches("(^Who is head of department)\\s\\w+$")) {
             questionTypeNumber =  1;
         }
-        if (question.matches("^(Show)\\s\\S+\\s(statistics).?$")) {
+        if (question.matches("^(Show)\\s\\S+\\s(statistics)$")) {
             questionTypeNumber = 2;
         }
-        if (question.matches("^(Show the average salary for the department)\\s\\S+.?$")) {
+        if (question.matches("^(Show the average salary for the department)\\s\\S+$")) {
             questionTypeNumber = 3;
-
         }
-        if (question.matches("^(Show count of employee for )\\S+.?$")) {
+        if (question.matches("^(Show count of employees for )\\S+$")) {
             questionTypeNumber = 4;
         }
-        if (question.matches("^(Global search by )\\S+.?$")) {
+        if (question.matches("^(Global search by )\\S+$")) {
             questionTypeNumber = 5;
         }
 
@@ -36,7 +36,7 @@ public class ParseQuestionService implements ParseQuestionInterface {
     }
 
     public String getAnswer(String input) throws SQLException {
-        input = input.trim();
+        input = input.trim().replaceAll("[.?]$", "");
         Integer numberOfQuestion = checkQuestion(input);
         String answer;
         switch (numberOfQuestion) {

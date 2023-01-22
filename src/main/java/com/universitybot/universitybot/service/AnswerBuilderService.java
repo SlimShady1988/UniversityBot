@@ -127,7 +127,7 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
                             """ 
                                     SELECT  avg(payment)FROM lectors
                                     JOIN lectors_departments ld ON lectors.id = ld.lector_id
-                                    AND department_id =(SELECT id FROM departments WHERE departments.name = ?);""");
+                                    AND department_id =(SELECT id FROM departments WHERE departments.name = ?);""")
             ) {
                 averageSalaryStatement.setString(1, departmentName);
                 var averageSalaryResult = averageSalaryStatement.executeQuery();
@@ -158,7 +158,7 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
                                     SELECT count(firstname)FROM lectors JOIN lectors_departments ld
                                         ON lectors.id = ld.lector_id
                                                AND department_id =(
-                                               SELECT id FROM departments WHERE departments.name = ?);""");
+                                               SELECT id FROM departments WHERE departments.name = ?);""")
             ) {
                 countEmployeesStatement.setString(1, departmentName);
                 var countEmployeesResult = countEmployeesStatement.executeQuery();
@@ -181,16 +181,13 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
     public String getMatches(String match) throws SQLException {
         List<String> matchList = new ArrayList<>();
         String result;
-
-        System.out.println(match);
-
         try (Connection connection = dataSource.getConnection()) {
             try (
                     PreparedStatement matchesStatement = connection.prepareStatement(
                             """ 
                                     SELECT firstname, lastname
                                         FROM lectors
-                                    WHERE lectors.firstname LIKE ? OR lectors.lastname LIKE ?;""");
+                                    WHERE lectors.firstname LIKE ? OR lectors.lastname LIKE ?;""")
             ) {
                 matchesStatement.setString(1, "%" + match + "%");
                 matchesStatement.setString(2, "%" + match + "%");
