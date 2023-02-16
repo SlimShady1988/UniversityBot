@@ -42,17 +42,16 @@ public class UniversityBotApplication implements CommandLineRunner {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 			ParseQuestionService parseQuestionService = (ParseQuestionService) context.getBean("parseQuestionService");
 			var readyToCLose = false;
-			while(true) {
+			while (true) {
 				String input = reader.readLine();
 				if (!readyToCLose) {
-				String answer = parseQuestionService.getAnswer(input);
-				System.out.println(answer);
+					String answer = parseQuestionService.getAnswer(input);
+					System.out.println(answer);
 
-				if (answer.equals("Bad request")) {
-					System.out.println("Do you wanna try again? ( y / n )");
-					readyToCLose = true;
-				}
-
+					if (answer.equals("Bad request")) {
+						System.out.println("Do you wanna try again? ( y / n )");
+						readyToCLose = true;
+					}
 				} else {
 					if (input.equals("n")) {
 						System.out.println("Bye...!");

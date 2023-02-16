@@ -199,7 +199,6 @@ public class AnswerBuilderService implements DepartmentAnswerInterface {
 
                 result = matchList.stream().map(Object::toString)
                         .collect(Collectors.joining(", "));
-
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
